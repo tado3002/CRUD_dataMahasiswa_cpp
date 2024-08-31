@@ -1,13 +1,12 @@
 #include "crud.h"
-
-int getOpt();
+#include <iostream>
 
 int main () {
   std::fstream database_mahasiswa;
   //fungsi pengecekan database
   crud::checkDatabase(database_mahasiswa);
 
-  int option = getOpt(); 
+  int option = crud::getOpt(); 
   char isContinue;
   enum option{CREATE=1,READ,UPDATE,DELETE,FINISH};
 
@@ -34,30 +33,12 @@ int main () {
     
     std::cout << "\ningin melanjutkan?(y/n) : ";
     std::cin >> isContinue;
-    if(isContinue=='y'||isContinue=='Y') option = getOpt();
+    if(isContinue=='y'||isContinue=='Y') option = crud::getOpt();
     else if (isContinue=='n'||isContinue=='N') break;
     else goto label_continue;
   }
-   
 
   std::cout<<"Sampai jumpa :)"<<std::endl;
   return 0;
-}
-
-int getOpt (){
-  system("clear");
-  int opt;
-  std::cout<<"\nPROGRAM CRUD DATA MAHASISWA\n";
-  std::cout<<"============================="<<std::endl;
-  std::cout<<"[1]. Tambah data mahasiswa."<<std::endl;
-  std::cout<<"[2]. Tampilkan data mahasiswa."<<std::endl;
-  std::cout<<"[3]. Update data mahasiswa."<<std::endl;
-  std::cout<<"[4]. Hapus data mahasiswa."<<std::endl;
-  std::cout<<"[5]. Selesai."<<std::endl;
-  std::cout<<"============================="<<std::endl;
-  std::cout<<"Masukan pilihan [1-5]! :";
-  std::cin>>opt;
-  std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
-  return opt;
 }
 
